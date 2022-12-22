@@ -7,8 +7,10 @@ MAX_ERROR_LENGTH = 1000
 ''' HELP TO FORMAT COMPILE ERROR TO BE VIEWED IN HTML '''
 def format(compileError, problemName):
     compileError = compileError.replace(f"tmp/{problemName}", problemName)
+    # Format compile error for display in HTML
     compileError = compileError.replace("<", "&lt;")
     compileError = compileError.replace(">", "&gt;")
+    compileError = compileError.replace("\n", "<br>")
     compileError = compileError[:MAX_ERROR_LENGTH]
     if compileError == "":
         compileError = 'Compile timed out after 30s'
