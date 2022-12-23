@@ -2,7 +2,7 @@
 Codebreaker Compilation Server
 
 - Docker server built to run serverlessly on AWS Lambda as part of a grading step function
-- Performs execution on Ubuntu 20.04 stable releasein line with [IOI 2022 regulations](https://ioi2022.id/contest-environment/))
+- Performs compilation on Ubuntu 20.04 stable release in line with [IOI 2022 regulations](https://ioi2022.id/contest-environment/))
 
 ### Repostiory Directory
 - `app.py`: Main application file for Lambda function
