@@ -8,7 +8,7 @@ Codebreaker Compilation Server
 - `app.py`: Main application file for Lambda function
 - `awstools.py`: AWS tools file that manages S3 and dynamo interactions
 - `compilesub.py`: Main logic that compiles C++ codes
-- `in.sh`: Input template for lambda function
+- `in.json`: Input template for lambda function
 
 #### Local docker management
 - `cleardocker.sh`: Clears all docker images locally
