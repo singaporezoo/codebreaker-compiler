@@ -4,6 +4,12 @@ phases:
   pre_build:
     commands:
       - echo Logging into AMAZON ECR
+      - $(aws ecr get-login --region $AWS_DEFAULT_REGION --no-include-email)
+      - REPOSITORY_URI=354145626860.dkr.ecr.ap-southeast-1.amazonaws.com/codebreakercontest-compiler-repository
+      - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
+      - IMAGE_TAG=build-$(echo $CODEBUILD_BUILD_ID | awk -F":" '{print $2}')
+      - echo $IMAGE_TAG
+      - echo $COMMIT_HASH
   build:
     commands:
       - echo Build Commence
