@@ -2,4 +2,11 @@ version: 0.2
 
 phases:
   pre_build:
-    - echo Logging into AMAZON ECR
+    commands:
+      - echo Logging into AMAZON ECR
+  build:
+    commands:
+      - echo Build Commence
+  post_build:
+    commands:
+      - echo Completed
