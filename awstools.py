@@ -1,5 +1,6 @@
 import boto3
 import json
+import os
 
 judgeName = os.environ['judgeName']
 SUBMISSIONS_BUCKET_NAME = f'{judgeName}-submissions'
