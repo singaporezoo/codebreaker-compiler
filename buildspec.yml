@@ -4,10 +4,7 @@ phases:
   pre_build:
     commands:
       - echo Logging into Amazon ECR
-      - echo docker info
-      - docker info
-      - REPOSITORY_URI=354145626860.dkr.ecr.ap-southeast-1.amazonaws.com/codebreakercontest-compiler-repository
-      - $(aws ecr get-login-password --region ap-southeast-1 | docker login --username AWS --password-stdin 354145626860.dkr.ecr.ap-southeast-1.amazonaws.com)
+      - aws ecr get-login-password --region $AWS_DEFAULT_REGION | docker login --username AWS --password-stdin $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com
   build:
     commands:
       - echo Building docker image
