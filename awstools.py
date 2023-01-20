@@ -1,12 +1,13 @@
 import boto3
 import json
 
-SUBMISSIONS_BUCKET_NAME = 'codebreaker-submissions'
-GRADERS_BUCKET_NAME = 'codebreaker-graders'
+judgeName = os.environ['judgeName']
+SUBMISSIONS_BUCKET_NAME = f'{judgeName}-submissions'
+GRADERS_BUCKET_NAME = f'{judgeName}-graders'
 
 s3 = boto3.client('s3','ap-southeast-1')
 dynamodb = boto3.resource('dynamodb', 'ap-southeast-1')
-problems_table = dynamodb.Table('codebreaker-problems')
+problems_table = dynamodb.Table(f'{judgeName}-problems')
 
 def getGraderFile(s3path, localpath):
     grader = s3.get_object(Bucket=GRADERS_BUCKET_NAME,Key=s3path)
