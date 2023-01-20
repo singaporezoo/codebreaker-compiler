@@ -15,6 +15,6 @@ aws ecr get-login-password --region ap-southeast-1 | sudo docker login --usernam
 # Uses docker image to get list of latest images
 # docker build -t dockertest . to build new docker image
 # If required, use cleardocker.sh to clear the docker containers not in use
-docker tag c4492d5a06e3 354145626860.dkr.ecr.ap-southeast-1.amazonaws.com/codebreaker-compilation
+docker tag b0dadad0ff90 354145626860.dkr.ecr.ap-southeast-1.amazonaws.com/codebreaker-compilation
 # Pushes new image to ECR (remember to rebuild in lambda)
 docker push 354145626860.dkr.ecr.ap-southeast-1.amazonaws.com/codebreaker-compilation
