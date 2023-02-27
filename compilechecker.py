@@ -2,7 +2,7 @@ import awstools
 import subprocess
 from compilesub import format
 
-def compileChecker():
+def compileChecker(problemName):
 	sourceName = f"{problemName}.cpp"
     compiledName = f"{problemName}"
     sourceS3Path = f"source/{problemName}.cpp"
