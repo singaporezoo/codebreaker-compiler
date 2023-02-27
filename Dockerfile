@@ -8,7 +8,6 @@ RUN  apt -y install -y g++ \
     libtool \
     autoconf \
     python3.8 \
-    python3.8-distutils \
     curl
 
 # Install pip, prob can pre-download and dont use curl
