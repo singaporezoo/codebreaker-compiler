@@ -2,9 +2,6 @@ FROM public.ecr.aws/lts/ubuntu:20.04_stable
 ENV PYTHONIOENCODING="utf8"
 # See: https://docs.aws.amazon.com/lambda/latest/dg/images-create.html
 
-RUN ln -snf /usr/share/zoneinfo/$CONTAINER_TIMEZONE /etc/localtime && echo $CONTAINER_TIMEZONE > /etc/timezone
-# See: https://askubuntu.com/questions/909277/avoiding-user-interaction-with-tzdata-when-installing-certbot-in-a-docker-contai
-
 RUN apt-get update
 RUN  apt -y install -y g++ \
     cmake \
@@ -31,5 +28,6 @@ RUN python3.8 -m pip install boto3
 COPY app.py ${LAMBDA_TASK_ROOT}
 COPY awstools.py ${LAMBDA_TASK_ROOT}
 COPY compilesub.py ${LAMBDA_TASK_ROOT}
+COPY testlib.h ${LAMBDA_TASK_ROOT}
 
 CMD [ "app.lambda_handler" ] 

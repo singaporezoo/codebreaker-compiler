@@ -12,17 +12,24 @@ def lambda_handler(event, context):
     grader = event['grader']
     problemType = event['problemType']
     language = event['language']
+    submissionTime = event['submissionTime']
 
     os.chdir('/tmp')
 
     ''' Python: NO COMPILATION NECESSARY '''
     if language == 'py':
-        return {'status': 200, 'error': ''}
-
-    ''' FOR C++ CODES '''
-    if problemType == 'Batch': 
-        return compilesub.compileBatch(submissionId, problemName, grader, language)
+        res = {'status': 200, 'error': ''}
+    elif problemType == 'Batch': 
+        res = compilesub.compileBatch(submissionId, problemName, grader, language)
     elif problemType == 'Interactive':
-        return compilesub.compileInteractive(submissionId, problemName, grader, language)
+        res = compilesub.compileInteractive(submissionId, problemName, grader, language)
     elif problemType == 'Communication':
-        return compilesub.compileCommunication(submissionId, problemName, grader, language)
+        res = compilesub.compileCommunication(submissionId, problemName, grader, language)
+    else:
+        return {'status': 300, 'error': 'Invalid Problem Type!'}
+
+    # Compile successful, update subDelay and subLimit
+    if res['status'] == 200:
+        awstools.registerSubmission(username, problemName, submissionTime)
+
+    return res

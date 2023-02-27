@@ -34,3 +34,5 @@ def getCommunicationFileNames(problemName):
         ProjectionExpression = 'nameA, nameB'
     )['Item']
     return res
+
+    
