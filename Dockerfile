@@ -2,12 +2,14 @@ FROM public.ecr.aws/lts/ubuntu:20.04_stable
 ENV PYTHONIOENCODING="utf8"
 # See: https://docs.aws.amazon.com/lambda/latest/dg/images-create.html
 
+ARG DEBIAN_FRONTEND=noninteractive
 RUN apt-get update
 RUN  apt -y install -y g++ \
     cmake \
     libtool \
     autoconf \
     python3.8 \
+    python3.8-distutils \
     curl
 
 # Install pip, prob can pre-download and dont use curl
