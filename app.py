@@ -3,10 +3,18 @@
 # Return 200 for success
 
 import os
-import subprocess
 import compilesub
+import compilechecker
 
 def lambda_handler(event, context):
+    compilationType = event['compilationType']
+
+    if compilationType == 'CHECKER':
+        # Compilation of checker
+        problemName = event['problemName']
+        res = compilechecker.compileChecker(problemName)
+        return res
+
     submissionId = event['submissionId']
     problemName = event['problemName']
     grader = event['grader']
@@ -27,9 +35,5 @@ def lambda_handler(event, context):
         res = compilesub.compileCommunication(submissionId, problemName, grader, language)
     else:
         return {'status': 300, 'error': 'Invalid Problem Type!'}
-
-    # Compile successful, update subDelay and subLimit
-    if res['status'] == 200:
-        awstools.registerSubmission(username, problemName, submissionTime)
 
     return res

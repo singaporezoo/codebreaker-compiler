@@ -36,11 +36,10 @@ def compileBatch(submissionId, problemName, grader, language):
 
         return {'status':200, 'error':''}
     except subprocess.CalledProcessError:
-            subprocess.run(f'sudo rm {sourceName}', shell=True)
-            compileError = format(process.stderr.decode('UTF-8'), problemName = problemName)
-            
-            # Return 422 unprocessable entity for compile errors
-            return {'status':422,'error':compileError}
+        compileError = format(process.stderr.decode('UTF-8'), problemName = problemName)
+        
+        # Return 422 unprocessable entity for compile errors
+        return {'status':422,'error':compileError}
 
 def compileInteractive(submissionId, problemName, grader, language):
     sourceName = f"{problemName}.cpp"

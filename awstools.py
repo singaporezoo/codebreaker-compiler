@@ -4,6 +4,7 @@ import os
 
 judgeName = os.environ['judgeName']
 SUBMISSIONS_BUCKET_NAME = f'{judgeName}-submissions'
+CHECKERS_BUCKET_NAMe = f'{judgeName}-checkers'
 GRADERS_BUCKET_NAME = f'{judgeName}-graders'
 
 s3 = boto3.client('s3','ap-southeast-1')
@@ -35,4 +36,12 @@ def getCommunicationFileNames(problemName):
     )['Item']
     return res
 
-    
+def getChecker(s3path, localpath):
+    tcfile = s3.get_object(Bucket=CHECKERS_BUCKET_NAME, Key=s3path)
+    body = tcfile['Body'].read().decode("utf-8")
+    with open(localpath,"w") as f:
+        f.write(body)
+        f.close()
+
+def uploadCompiledChecker(localpath, s3path):
+    s3.upload_file(localpath, CHECKERS_BUCKET_NAME, s3path)
