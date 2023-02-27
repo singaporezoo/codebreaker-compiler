@@ -4,7 +4,7 @@ import os
 
 judgeName = os.environ['judgeName']
 SUBMISSIONS_BUCKET_NAME = f'{judgeName}-submissions'
-CHECKERS_BUCKET_NAMe = f'{judgeName}-checkers'
+CHECKERS_BUCKET_NAME = f'{judgeName}-checkers'
 GRADERS_BUCKET_NAME = f'{judgeName}-graders'
 
 s3 = boto3.client('s3','ap-southeast-1')
