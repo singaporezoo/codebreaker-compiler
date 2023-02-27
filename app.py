@@ -7,9 +7,9 @@ import compilesub
 import compilechecker
 
 def lambda_handler(event, context):
-    compilationType = event['compilationType']
+    eventType = event['eventType']
 
-    if compilationType == 'CHECKER':
+    if eventType == 'CHECKER':
         # Compilation of checker
         problemName = event['problemName']
         res = compilechecker.compileChecker(problemName)
