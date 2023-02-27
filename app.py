@@ -7,33 +7,33 @@ import compilesub
 import compilechecker
 
 def lambda_handler(event, context):
-    eventType = event['eventType']
+	eventType = event['eventType']
 
-    if eventType == 'CHECKER':
-        # Compilation of checker
-        problemName = event['problemName']
-        res = compilechecker.compileChecker(problemName)
-        return res
+	if eventType == 'CHECKER':
+		# Compilation of checker
+		problemName = event['problemName']
+		res = compilechecker.compileChecker(problemName)
+		return res
 
-    submissionId = event['submissionId']
-    problemName = event['problemName']
-    grader = event['grader']
-    problemType = event['problemType']
-    language = event['language']
-    submissionTime = event['submissionTime']
+	submissionId = event['submissionId']
+	problemName = event['problemName']
+	grader = event['grader']
+	problemType = event['problemType']
+	language = event['language']
+	submissionTime = event['submissionTime']
 
-    os.chdir('/tmp')
+	os.chdir('/tmp')
 
-    ''' Python: NO COMPILATION NECESSARY '''
-    if language == 'py':
-        res = {'status': 200, 'error': ''}
-    elif problemType == 'Batch': 
-        res = compilesub.compileBatch(submissionId, problemName, grader, language)
-    elif problemType == 'Interactive':
-        res = compilesub.compileInteractive(submissionId, problemName, grader, language)
-    elif problemType == 'Communication':
-        res = compilesub.compileCommunication(submissionId, problemName, grader, language)
-    else:
-        return {'status': 300, 'error': 'Invalid Problem Type!'}
+	''' Python: NO COMPILATION NECESSARY '''
+	if language == 'py':
+		res = {'status': 200, 'error': ''}
+	elif problemType == 'Batch': 
+		res = compilesub.compileBatch(submissionId, problemName, grader, language)
+	elif problemType == 'Interactive':
+		res = compilesub.compileInteractive(submissionId, problemName, grader, language)
+	elif problemType == 'Communication':
+		res = compilesub.compileCommunication(submissionId, problemName, grader, language)
+	else:
+		return {'status': 300, 'error': 'Invalid Problem Type!'}
 
-    return res
+	return res
