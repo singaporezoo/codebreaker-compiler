@@ -10,6 +10,7 @@ def compileChecker(problemName):
 
 	# Get source file
 	awstools.getChecker(s3path = sourceS3Path, localpath = sourceName)
+	subprocess.run(f"chmod +x {sourceName}", shell=True)
 
 	cmd=f"timeout 30s g++ -O2 -o {compiledName} {sourceName} -m64 -static -std=gnu++17 -lm -s -w -Wall -Wshadow -fmax-errors=512" 
 
