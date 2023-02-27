@@ -9,6 +9,8 @@ import compilechecker
 def lambda_handler(event, context):
 	eventType = event['eventType']
 
+	os.chdir('/tmp')
+
 	if eventType == 'CHECKER':
 		# Compilation of checker
 		problemName = event['problemName']
@@ -21,8 +23,6 @@ def lambda_handler(event, context):
 	problemType = event['problemType']
 	language = event['language']
 	submissionTime = event['submissionTime']
-
-	os.chdir('/tmp')
 
 	''' Python: NO COMPILATION NECESSARY '''
 	if language == 'py':
