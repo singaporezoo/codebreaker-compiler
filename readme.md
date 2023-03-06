@@ -11,7 +11,7 @@ Codebreaker Compilation Server
 - `app.py`: Main application file for Lambda function
 - `awstools.py`: AWS tools file that manages S3 and dynamo interactions
 - `compilesub.py`: Main logic that compiles C++ codes
-- `testing/in.json`: Input template for lambda function
+- `compilechecker.py`: Main logic that compiles C++ checkers (admin side)
 
 ### Checker Documentation
 
