@@ -9,6 +9,7 @@ import compilechecker
 def lambda_handler(event, context):
 	eventType = event['eventType']
 
+	os.system('cp /testlib.h /tmp/testlib.h')
 	os.chdir('/tmp')
 
 	if eventType == 'CHECKER':
